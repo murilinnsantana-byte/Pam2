@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react_vazio",
-    "slug": "react_vazio",
+    "name": "vazio",
+    "slug": "vazio",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
