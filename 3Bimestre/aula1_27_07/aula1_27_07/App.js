@@ -1,5 +1,5 @@
 import React from 'react';
-import LoginScreen from './LoginScreen'; // Ajuste o caminho se o seu arquivo tiver outro nome
+import LoginScreen from './LoginScreen';
 
 export default function App() {
   return <LoginScreen />;
