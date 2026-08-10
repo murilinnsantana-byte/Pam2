@@ -1,6 +1,5 @@
-import React from 'react';
-import LoginScreen from './LoginScreen';
+import StackNavigator from './navigation/StackNavigator';
 
 export default function App() {
-  return <LoginScreen />;
+  return <StackNavigator />;
 }
