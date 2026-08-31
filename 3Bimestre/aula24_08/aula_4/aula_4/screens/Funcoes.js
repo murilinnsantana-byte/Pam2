@@ -1,21 +1,62 @@
-export function calcularIdade(nome, anoNascimento, setResultado) {
+export function verificarQuiz() {
 
-  const anoAtual = new Date().getFullYear();
-  const ano = Number(anoNascimento);
+    const respostasCorretas = {
+        pergunta1: "b",
+        pergunta2: "c",
+        pergunta3: "b",
+        pergunta4: "a",
+        pergunta5: "a",
+        pergunta6: "c",
+        pergunta7: "a",
+        pergunta8: "b",
+        pergunta9: "a",
+        pergunta10: "a"
+    };
 
-  if (nome === '' || anoNascimento === '') {
-    setResultado('Preencha todos os campos!');
-    return;
-  }
+    let pontos = 0;
 
-  if (ano <= 0 || ano > anoAtual) {
-    setResultado('Digite um ano de nascimento válido!');
-    return;
-  }
+    const totalPerguntas = Object.keys(respostasCorretas).length;
 
-  const idade = anoAtual - ano;
+    for (let pergunta in respostasCorretas) {
 
-  setResultado(
-    `Olá, ${nome}! Você tem aproximadamente ${idade} anos.`
-  );
+        const respostaSelecionada = document.querySelector(
+            `input[name="${pergunta}"]:checked`
+        );
+
+        if (respostaSelecionada) {
+
+            if (respostaSelecionada.value === respostasCorretas[pergunta]) {
+                pontos++;
+            }
+        }
+    }
+
+    const resultado = document.getElementById("resultado");
+
+    let mensagem = "";
+
+    if (pontos === 10) {
+        mensagem = "🏆 Você é um mestre do basquete!";
+    } 
+    else if (pontos >= 7) {
+        mensagem = "🔥 Mandou muito bem!";
+    } 
+    else if (pontos >= 5) {
+        mensagem = "👏 Bom trabalho!";
+    } 
+    else {
+        mensagem = "🏀 Continue treinando seus conhecimentos!";
+    }
+
+    resultado.innerHTML = `
+        <h2>Resultado</h2>
+
+        <p>Você acertou <strong>${pontos}</strong> de <strong>${totalPerguntas}</strong> perguntas.</p>
+
+        <p>${mensagem}</p>
+
+        <button onclick="location.reload()">
+            Jogar novamente
+        </button>
+    `;
 }
