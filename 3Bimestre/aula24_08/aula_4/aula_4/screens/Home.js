@@ -2,6 +2,8 @@ import { verificarQuiz } from "./Funcoes.js";
 import "./Estilo.js";
 
 export function Home() {
+   
+   document.body.style.overflowY = "auto";
    document.body.insertAdjacentHTML("beforeend", `
    document.body.style.overflowY = "auto";
         
