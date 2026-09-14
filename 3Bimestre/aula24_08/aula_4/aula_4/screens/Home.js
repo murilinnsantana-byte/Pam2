@@ -2,12 +2,14 @@ import { verificarQuiz } from "./Funcoes.js";
 import "./Estilo.js";
 
 export function Home() {
-   
-   document.body.style.overflowY = "auto";
-   document.body.insertAdjacentHTML("beforeend", `
-   document.body.style.overflowY = "auto";
-        
-  <div class="container">
+
+    document.body.innerHTML = "";
+
+    document.body.style.overflowY = "auto";
+
+    document.body.insertAdjacentHTML("beforeend", `
+  
+        <div class="container">
             <div class="quiz">
                 <h1>🏀 Quiz de Basquete</h1>
 
