@@ -1,28 +1,37 @@
 import React from 'react';
-import { View, Text, FlatList } from 'react-native';
-import { estilos } from './Estilo';
-import { obterListaItens } from './Funcoes';
+import { View, Text, FlatList, TouchableOpacity } from 'react-native';
+import { estilosGerais } from './Estilo';
+import { dadosProdutos, exibirAlertaItem } from './Funcoes';
 
-export default function Home() {
-  const dados = obterListaItens();
+export default function HomeScreen({ route }) {
+  const usuarioLogado = route.params?.usuario || 'Membro';
 
   const renderizarItem = ({ item }) => (
-    <View style={estilos.itemCard}>
-      <Text style={estilos.tagCategoria}>{item.categoria.toUpperCase()}</Text>
-      <Text style={estilos.itemTitulo}>{item.titulo}</Text>
-      <Text style={estilos.itemDescricao}>{item.descricao}</Text>
+    <View style={estilosGerais.card}>
+      <View style={estilosGerais.tagCategoria}>
+        <Text style={estilosGerais.textoCategoria}>{item.categoria}</Text>
+      </View>
+      <Text style={estilosGerais.cardTitulo}>{item.nome}</Text>
+      <Text style={estilosGerais.cardPreco}>{item.preco}</Text>
+      
+      <TouchableOpacity 
+        style={estilosGerais.botaoDetalhes} 
+        onPress={() => exibirAlertaItem(item)}
+      >
+        <Text style={estilosGerais.textoBotaoDetalhes}>Ver Detalhes do Item</Text>
+      </TouchableOpacity>
     </View>
   );
 
   return (
-    <View style={estilos.container}>
-      <View style={estilos.cabecalho}>
-        <Text style={estilos.titulo}>Recursos e Funções do Projeto</Text>
-        <Text style={estilos.subtitulo}>Conceitos aplicados neste aplicativo React Native</Text>
+    <View style={estilosGerais.container}>
+      <View style={estilosGerais.headerBanner}>
+        <Text style={estilosGerais.brandSubtitle}>URBAN VIBE STORE</Text>
+        <Text style={estilosGerais.titulo}>Bem-vindo, {usuarioLogado}!</Text>
       </View>
 
       <FlatList
-        data={dados}
+        data={dadosProdutos}
         keyExtractor={(item) => item.id}
         renderItem={renderizarItem}
         showsVerticalScrollIndicator={false}

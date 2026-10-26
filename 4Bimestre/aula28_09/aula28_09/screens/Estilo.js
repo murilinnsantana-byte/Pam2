@@ -1,52 +1,81 @@
 import { StyleSheet } from 'react-native';
 
-export const estilos = StyleSheet.create({
+export const estilosGerais = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#13131e',
-    padding: 20,
+    backgroundColor: '#0F172A', // Fundo azul escuro moderno
+    paddingHorizontal: 20,
+    paddingTop: 15,
   },
-  cabecalho: {
+  headerBanner: {
+    backgroundColor: '#1E293B',
+    borderRadius: 16,
+    padding: 20,
     marginBottom: 20,
+    borderWidth: 1,
+    borderColor: '#334155',
+    alignItems: 'center',
+  },
+  brandSubtitle: {
+    fontSize: 12,
+    fontWeight: '700',
+    color: '#818CF8', // Roxo Neon
+    letterSpacing: 2,
+    textTransform: 'uppercase',
+    marginBottom: 4,
   },
   titulo: {
-    fontSize: 24,
+    fontSize: 22,
     fontWeight: 'bold',
-    color: '#ffffff',
+    color: '#F8FAFC',
   },
-  subtitulo: {
-    fontSize: 14,
-    color: '#a0a0b0',
-    marginTop: 4,
-  },
-  itemCard: {
-    backgroundColor: '#1e1e2e',
+  card: {
+    backgroundColor: '#1E293B',
+    borderRadius: 16,
     padding: 18,
-    borderRadius: 12,
-    marginBottom: 14,
-    borderLeftWidth: 4,
-    borderLeftColor: '#6c5ce7',
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#334155',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+    elevation: 5,
   },
   tagCategoria: {
     alignSelf: 'flex-start',
-    backgroundColor: '#342b68',
-    color: '#a29bfe',
-    fontSize: 11,
-    fontWeight: 'bold',
-    paddingHorizontal: 8,
+    backgroundColor: 'rgba(99, 102, 241, 0.15)',
+    paddingHorizontal: 10,
     paddingVertical: 4,
-    borderRadius: 6,
+    borderRadius: 20,
     marginBottom: 8,
   },
-  itemTitulo: {
-    fontSize: 17,
-    fontWeight: 'bold',
-    color: '#ffffff',
+  textoCategoria: {
+    color: '#818CF8',
+    fontSize: 12,
+    fontWeight: '600',
+  },
+  cardTitulo: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: '#F8FAFC',
     marginBottom: 6,
   },
-  itemDescricao: {
+  cardPreco: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#38BDF8', // Azul Neon
+    marginBottom: 12,
+  },
+  botaoDetalhes: {
+    backgroundColor: '#6366F1', // Roxo de destaque
+    paddingVertical: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  textoBotaoDetalhes: {
+    color: '#FFFFFF',
+    fontWeight: 'bold',
     fontSize: 14,
-    color: '#b2bec3',
-    lineHeight: 20,
   },
 });
