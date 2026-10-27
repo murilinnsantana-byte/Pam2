@@ -1,51 +1,60 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
-import { loginEstilos } from './LoginEstilo';
-import { validarLogin } from './Funcoes';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
+import { estilosGerais } from './Estilo';
 
 export default function LoginScreen({ navigation }) {
-  const [usuario, setUsuario] = useState('');
+  const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  // FUNÇÃO DE VALIDAÇÃO DE LOGIN
   const handleLogin = () => {
-    const resultado = validarLogin(usuario, senha);
-
-    if (resultado.valido) {
-      navigation.replace('Home', { usuario });
-    } else {
-      Alert.alert('Erro no acesso', resultado.mensagem);
+    if (!email.trim() || !senha.trim()) {
+      Alert.alert('Atenção', 'Por favor, informe seu e-mail e senha!');
+      return;
     }
+
+    if (!email.includes('@')) {
+      Alert.alert('Erro', 'Insira um e-mail válido!');
+      return;
+    }
+
+    // Navega para a Home passando o e-mail do usuário logado
+    navigation.navigate('Home', { usuarioEmail: email });
   };
 
   return (
-    <View style={loginEstilos.container}>
-      <View style={loginEstilos.logoArea}>
-        <Text style={loginEstilos.brandBadge}>URBAN VIBE</Text>
-        <Text style={loginEstilos.titulo}>Acesse sua conta</Text>
-        <Text style={loginEstilos.subtitulo}>Sua coleção exclusiva de streetwear</Text>
+    <View style={[estilosGerais.container, { justifyContent: 'center' }]}>
+      <View style={estilosGerais.headerBanner}>
+        <Text style={estilosGerais.brandSubtitle}>OFFICIAL STORE</Text>
+        <Text style={estilosGerais.titulo}>🏆 World Cup Kit</Text>
+        <Text style={estilosGerais.subtitulo}>A loja oficial dos mantos das seleções da Copa</Text>
       </View>
-      
-      <TextInput
-        style={loginEstilos.input}
-        placeholder="Usuário"
-        placeholderTextColor="#64748B"
-        value={usuario}
-        onChangeText={setUsuario}
-        autoCapitalize="none"
-      />
-      
-      <TextInput
-        style={loginEstilos.input}
-        placeholder="Senha"
-        placeholderTextColor="#64748B"
-        secureTextEntry
-        value={senha}
-        onChangeText={setSenha}
-      />
 
-      <TouchableOpacity style={loginEstilos.botao} onPress={handleLogin}>
-        <Text style={loginEstilos.textoBotao}>Entrar no App</Text>
-      </TouchableOpacity>
+      <View style={estilosGerais.card}>
+        <Text style={[estilosGerais.brandSubtitle, { marginBottom: 12 }]}>Acesse sua conta</Text>
+        
+        <TextInput
+          style={estilosGerais.input}
+          placeholder="E-mail do torcedor"
+          placeholderTextColor="#64748B"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
+        />
+
+        <TextInput
+          style={estilosGerais.input}
+          placeholder="Senha"
+          placeholderTextColor="#64748B"
+          secureTextEntry
+          value={senha}
+          onChangeText={setSenha}
+        />
+
+        <TouchableOpacity style={estilosGerais.botaoDetalhes} onPress={handleLogin}>
+          <Text style={estilosGerais.textoBotaoDetalhes}>ENTRAR NA LOJA</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 }

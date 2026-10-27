@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 export const estilosGerais = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0F172A', // Fundo azul escuro moderno
+    backgroundColor: '#0F172A',
     paddingHorizontal: 20,
     paddingTop: 15,
   },
@@ -19,7 +19,7 @@ export const estilosGerais = StyleSheet.create({
   brandSubtitle: {
     fontSize: 12,
     fontWeight: '700',
-    color: '#818CF8', // Roxo Neon
+    color: '#818CF8',
     letterSpacing: 2,
     textTransform: 'uppercase',
     marginBottom: 4,
@@ -29,6 +29,12 @@ export const estilosGerais = StyleSheet.create({
     fontWeight: 'bold',
     color: '#F8FAFC',
   },
+  subtitulo: {
+    fontSize: 13,
+    color: '#94A3B8',
+    marginTop: 4,
+    textAlign: 'center',
+  },
   card: {
     backgroundColor: '#1E293B',
     borderRadius: 16,
@@ -36,11 +42,14 @@ export const estilosGerais = StyleSheet.create({
     marginBottom: 16,
     borderWidth: 1,
     borderColor: '#334155',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.3,
-    shadowRadius: 6,
     elevation: 5,
+  },
+  imagemProduto: {
+    width: '100%',
+    height: 180,
+    borderRadius: 12,
+    marginBottom: 12,
+    resizeMode: 'cover',
   },
   tagCategoria: {
     alignSelf: 'flex-start',
@@ -64,11 +73,11 @@ export const estilosGerais = StyleSheet.create({
   cardPreco: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: '#38BDF8', // Azul Neon
+    color: '#38BDF8',
     marginBottom: 12,
   },
   botaoDetalhes: {
-    backgroundColor: '#6366F1', // Roxo de destaque
+    backgroundColor: '#6366F1',
     paddingVertical: 12,
     borderRadius: 10,
     alignItems: 'center',
@@ -77,5 +86,15 @@ export const estilosGerais = StyleSheet.create({
     color: '#FFFFFF',
     fontWeight: 'bold',
     fontSize: 14,
+  },
+  input: {
+    backgroundColor: '#0F172A',
+    borderWidth: 1,
+    borderColor: '#334155',
+    color: '#F8FAFC',
+    padding: 14,
+    borderRadius: 10,
+    marginBottom: 16,
+    fontSize: 15,
   },
 });
