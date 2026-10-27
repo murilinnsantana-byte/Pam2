@@ -1,56 +1,68 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native';
 import { collection, addDoc } from 'firebase/firestore';
 import { db } from './funcoes';
 import { styles } from './loginestilo';
 
 export default function Login({ navigation }) {
   const [nome, setNome] = useState('');
-  const [palpite, setPalpite] = useState('');
+  const [email, setEmail] = useState('');
 
-  const handleSalvarPalpite = async () => {
-    if (!nome || !palpite) {
-      Alert.alert('Atenção', 'Preencha o seu nome e o seu palpite!');
+  const handleEntrar = async () => {
+    if (!nome.trim() || !email.trim()) {
+      Alert.alert('Atenção', 'Por favor, preencha o seu Nome e E-mail para continuar.');
       return;
     }
 
     try {
-      await addDoc(collection(db, 'palpites'), {
+      // Salva a sessão/login do usuário no Firebase (CREATE)
+      await addDoc(collection(db, 'usuarios'), {
         nome: nome,
-        palpite: palpite,
-        data: new Date()
+        email: email,
+        dataAcesso: new Date()
       });
-      Alert.alert('Sucesso!', 'Seu palpite para a Copa foi registrado!');
-      setNome('');
-      setPalpite('');
-      navigation.navigate('Home');
+
+      Alert.alert('Bem-vindo!', `Acesso liberado, ${nome}!`);
+      navigation.navigate('Home', { usuarioNome: nome });
     } catch (error) {
-      Alert.alert('Erro ao salvar', error.message);
+      Alert.alert('Erro ao conectar', error.message);
     }
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.titulo}>🏆 COPA DO MUNDO</Text>
-        <Text style={styles.subtitulo}>Portal Oficial de Torcedores</Text>
+        <Image 
+          source={{ uri: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?q=80&w=300' }} 
+          style={styles.logoIcon} 
+        />
+        <Text style={styles.badge}>FIFA WORLD CUP</Text>
+        <Text style={styles.titulo}>PORTAL COPA</Text>
+        <Text style={styles.subtitulo}>Acesse sua conta para conferir tudo e registrar seus palpites</Text>
       </View>
 
       <View style={styles.card}>
+        <Text style={styles.label}>Nome Completo</Text>
         <TextInput
           style={styles.input}
-          placeholder="Seu Nome"
+          placeholder="Ex: Murilo Santana"
+          placeholderTextColor="#536357"
           value={nome}
           onChangeText={setNome}
         />
+
+        <Text style={styles.label}>E-mail do Torcedor</Text>
         <TextInput
           style={styles.input}
-          placeholder="Quem será o Campeão da Copa?"
-          value={palpite}
-          onChangeText={setPalpite}
+          placeholder="Ex: murilo@email.com"
+          placeholderTextColor="#536357"
+          keyboardType="email-address"
+          value={email}
+          onChangeText={setEmail}
         />
-        <TouchableOpacity style={styles.botao} onPress={handleSalvarPalpite}>
-          <Text style={styles.textoBotao}>Registrar Palpite</Text>
+
+        <TouchableOpacity style={styles.botao} onPress={handleEntrar}>
+          <Text style={styles.textoBotao}>ACESSAR O PORTAL</Text>
         </TouchableOpacity>
       </View>
     </View>
